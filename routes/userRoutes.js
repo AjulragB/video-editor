@@ -5,8 +5,11 @@ const userRoutes = express.Router();
 
 
 
-userRoutes.get('/hello', userController.sayHello);
-userRoutes.post('/edit-video', fileUpload.fields([{ name: 'video' }, { name: 'audio' }, {name: 'image'}]), userController.editVideo);
+userRoutes.post('/edit-video', fileUpload.fields([{ name: 'video' }]), userController.editVideo);
+
+
+userRoutes.get('/', userController.getHome);
+userRoutes.get('/editor',userController.getEditor)
 
 
 export default userRoutes;

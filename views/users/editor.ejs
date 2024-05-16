@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #videoPlayer {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="file"],
+    input[type="text"],
+    button {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    input[type="file"] {
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Video Player -->
+    <video id="videoPlayer" controls></video>
+
+    <!-- Form for uploading files and editing parameters -->
+    <form id="videoForm" enctype="multipart/form-data" method="post">
+      <input type="file" name="video" accept="video/*">
+      <input type="text" name="trimStart" placeholder="Trim Start">
+      <input type="text" name="trimEnd" placeholder="Trim End">
+      <input type="text" name="textOverlay" placeholder="Text Overlay">
+      <input type="text" name="slideTextOverlay" placeholder="Slide Text Overlay">
+      <button type="submit">Edit Video</button>
+
+    </form>
+  </div>
+
+  <!-- Include your JavaScript file -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const videoPlayer = document.getElementById('videoPlayer');
+      const videoForm = document.getElementById('videoForm');
+
+      // Function to display video preview
+      const displayVideoPreview = (videoFile) => {
+        const videoURL = URL.createObjectURL(videoFile);
+        videoPlayer.src = videoURL;
+      };
+
+      // Event listener for form submission
+      videoForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(videoForm);
+
+        // Add JSON data to the FormData object
+        const videoDetails = {
+          trimStart: formData.get('trimStart'),
+          trimEnd: formData.get('trimEnd'),
+          textOverlay: formData.get('textOverlay'),
+          slideTextOverlay: formData.get('slideTextOverlay'),
+        };
+        formData.append('jsonData', JSON.stringify(videoDetails));
+
+        try {
+          // Send form data to the server
+          const response = await fetch('/edit-video', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (response.ok) {
+            // If response is successful, display edited video
+            const blob = await response.blob();
+            const videoURL = URL.createObjectURL(blob);
+            videoPlayer.src = videoURL;
+
+            // Create a download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = videoURL;
+            downloadLink.download = 'edited_video.mp4'; // Specify the filename here
+
+            // Set link text and style
+            downloadLink.textContent = 'Download edited video';
+            downloadLink.style.display = 'block'; // Display as a block-level element
+
+            // Append the link to the document body
+            document.body.appendChild(downloadLink);
+          } else {
+            console.error('Error editing video:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error editing video:', error);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

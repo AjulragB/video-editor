@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Editor App</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1609619385002-f40f1df9b7eb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dmlkZW8lMjBlZGl0aW5nfGVufDB8fDB8fHww') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .hero a {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #0404ed;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .features {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .features h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+    .feature-cards {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      flex: 1;
+    }
+    .card img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+    .card p {
+      font-size: 1rem;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">VideoEditPro</div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <a href="#login">Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to VideoEditPro</h1>
+    <p>Your all-in-one solution for professional video editing</p>
+    <a href="/editor">Get Started</a>
+  </section>
+
+  <section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-cards">
+      <div class="card">
+        <img src="https://via.placeholder.com/100" alt="Feature 1">
+        <h3>Easy Editing</h3>
+        <p>Intuitive tools to edit your videos quickly and easily.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100" alt="Feature 2">
+        <h3>High Quality</h3>
+        <p>Export your videos in stunning 4K resolution.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100" alt="Feature 3">
+        <h3>Cloud Storage</h3>
+        <p>Save your projects in the cloud and access them anywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 VideoEditPro. All rights reserved.</p>
+  </footer>
+</body>
+</html>
